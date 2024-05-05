@@ -198,12 +198,14 @@ export class DaimobotProcessor {
     );
     const txHash = await this.trpcClient.createRequestSponsored.mutate(params);
     console.log(`[ARCHBOT REQUEST] txHash ${txHash}`);
-    const daimoShareUrl = formatDaimoLink({
-      type: "requestv2",
-      id: idString,
-      recipient: getEAccountStr(requestRecipient),
-      dollars: `${amount}`,
-    });
+    const recipient2 = getEAccountStr(requestRecipient);
+    const daimoShareUrl = `https://archframe.onrender.com/welcome/${idString}/${recipient2}/${amount}`;
+    // const daimoShareUrl = formatDaimoLink({
+    //   type: "requestv2",
+    //   id: idString,
+    //   recipient: getEAccountStr(requestRecipient),
+    //   dollars: `${amount}`,
+    // });
     console.log(`[ARCHBOT REQUEST] url ${daimoShareUrl}`);
     return daimoShareUrl;
   }
