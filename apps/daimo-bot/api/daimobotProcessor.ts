@@ -170,14 +170,12 @@ export class DaimobotProcessor {
     action: string;
     cleanedAmount: number;
   } | null {
-    const match = this.text?.match(
-      /@archbot (request|pay) \$?([0-9]*\.?[0-9]{1,2})/
-    );
+    const match = this.text?.match(/exchange \$?([0-9]*\.?[0-9]{1,2})/);
     console.log(`[ARCHBOT] checking: ${JSON.stringify(match)}`);
-    if (match && match[1] && match[2]) {
-      const cleanedAmount = parseFloat(parseFloat(match[2]).toFixed(2));
+    if (match) {
+      const cleanedAmount = parseFloat(parseFloat(match[1]).toFixed(2));
       return {
-        action: match[1],
+        action: "request",
         cleanedAmount,
       };
     }

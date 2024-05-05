@@ -27,6 +27,6 @@ export class BotResp {
   }
 
   static commandNotValid() {
-    return "🫡 Didn't catch that. Try something like `@archbot request $10` or `@archbot pay $4`";
+    return "🫡 Didn't catch that. Try something like `exchange $10` or `exchange 4.25`";
   }
 }
