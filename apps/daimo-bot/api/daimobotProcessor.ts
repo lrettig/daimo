@@ -171,9 +171,9 @@ export class DaimobotProcessor {
     cleanedAmount: number;
   } | null {
     const match = this.text?.match(
-      /@daimobot (request|pay) \$?([0-9]*\.?[0-9]{1,2})/
+      /@archbot (request|pay) \$?([0-9]*\.?[0-9]{1,2})/
     );
-    console.log(`[DAIMOBOT] checking: ${JSON.stringify(match)}`);
+    console.log(`[ARCHBOT] checking: ${JSON.stringify(match)}`);
     if (match && match[1] && match[2]) {
       const cleanedAmount = parseFloat(parseFloat(match[2]).toFixed(2));
       return {
@@ -194,17 +194,17 @@ export class DaimobotProcessor {
       amount: dollarsToAmount(amount).toString(),
     };
     console.log(
-      `[DAIMOBOT] createRequestSponsored with params: ${JSON.stringify(params)}`
+      `[ARCHBOT] createRequestSponsored with params: ${JSON.stringify(params)}`
     );
     const txHash = await this.trpcClient.createRequestSponsored.mutate(params);
-    console.log(`[DAIMOBOT REQUEST] txHash ${txHash}`);
+    console.log(`[ARCHBOT REQUEST] txHash ${txHash}`);
     const daimoShareUrl = formatDaimoLink({
       type: "requestv2",
       id: idString,
       recipient: getEAccountStr(requestRecipient),
       dollars: `${amount}`,
     });
-    console.log(`[DAIMOBOT REQUEST] url ${daimoShareUrl}`);
+    console.log(`[ARCHBOT REQUEST] url ${daimoShareUrl}`);
     return daimoShareUrl;
   }
 
@@ -221,7 +221,7 @@ export class DaimobotProcessor {
         .catch((err: any) => console.error(err));
     } else {
       console.log(
-        `[DAIMOBOT] MOCK published cast: ${JSON.stringify(
+        `[ARCHBOT] MOCK published cast: ${JSON.stringify(
           { text, opts },
           null,
           2
